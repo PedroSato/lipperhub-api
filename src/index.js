@@ -8,7 +8,7 @@ const path = require('path')
 const server = require('http').Server(app);
 const cookieParser = require('cookie-parser')
 
-mongoose.connect('mongodb+srv://USUARIO:lipperhubteste@cluster0-jpmib.mongodb.net/test?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://USUARIO:No6wPuwhvEIvKTRO@cluster0-jpmib.mongodb.net/test?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useCreateIndex: true
 })
@@ -18,12 +18,9 @@ app.use((req, res, next) => {
 })
 
 app.use(session({
-    name:'some_session',
-    secret: 'lalala',
-    resave: true,
-    saveUninitialized: false,
-    cookie: { maxAge: 365 * 24 * 60 * 60 * 1000,httpOnly: false , domain:'127.0.0.1:3000'},
-    
+    secret: 'OI23j23h54jkh',
+    resave: false,
+    saveUninitialized: true
 }));
 app.use(cors())
 app.use(bodyParser.json());
