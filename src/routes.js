@@ -5,6 +5,7 @@ const multer = require('multer')
 const uploadConfig = require('./config/upload')
 const upload = multer(uploadConfig)
 
+
 routes.post('/register', UserController.register)
 routes.post('/login', UserController.login)
 routes.get('/logout', UserController.logout)

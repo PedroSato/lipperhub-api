@@ -3,7 +3,9 @@ const sharp = require('sharp')
 const fs = require('fs')
 const path = require('path')
 
+var sess
 module.exports = {
+
 
 
     async login(req, res) {
@@ -31,12 +33,16 @@ module.exports = {
 
                 if (isMatch && isMatch === true) {
                     req.session.user = user
-                    return res.status(200).send(req.session.user)
+
+                    sess = req.session                    
+                    console.log(user)
+                    req.session.save()
+                    return res.status(200).send(user)
                 }
             })
 
         } catch{
-            console.log()
+            console.log(err)
         }
     },
     //metodo temporario remover ao finalizar
@@ -48,12 +54,13 @@ module.exports = {
     },
 
     async adresses(req, res) {
-        if (!req.session.user) {
+        if (!sess.user) {
+           
             return res.status(401).send('Usuário não logado')
 
-        } else {
-
-            return res.status(200).send(req.session.user)
+        } else {    
+            console.log(sess.user)
+            return res.status(200).send(sess.user)
         }
 
     },
