@@ -12,7 +12,7 @@ const UserSchema = new mongoose.Schema({
     image: String,
 
     adresses: [{
-        zip_code: Number,
+        zip_code: String,
         street: String,
         number: Number,
         comp: String,

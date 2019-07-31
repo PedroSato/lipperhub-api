@@ -35,7 +35,7 @@ module.exports = {
                     req.session.user = user
 
                     sess = req.session                    
-                    console.log(user)
+                    console.log(sess)
                     req.session.save()
                     return res.status(200).send(user)
                 }
@@ -68,19 +68,18 @@ module.exports = {
 
     async logout(req, res) {
         req.session.destroy()
-
+        sess = null
         return res.status(200).send('usuário deslogado')
     },
 
 
     async updateUser(req, res) {
 
-        const id = await req.session.user._id
+        const id = sess.user._id
+        console.log(id)
         if (req.file) {
             var { filename: image } = await req.file
         }
-
-
 
         if (req.file) {
 
@@ -124,6 +123,7 @@ module.exports = {
                     }
                     if (fileName) {
                         foundUser.image = fileName
+                        console.log(fileName)
                     }
 
                     foundUser.save((err, updatedUser) => {
@@ -131,6 +131,7 @@ module.exports = {
                             console.log(err)
                             res.status(500).send()
                         } else {
+                            console.log(updatedUser)
                             res.status(200).send(updatedUser)
                         }
                     })
