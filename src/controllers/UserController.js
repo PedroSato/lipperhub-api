@@ -35,7 +35,7 @@ module.exports = {
                     req.session.user = user
 
                     sess = req.session                    
-                    console.log(sess)
+                    
                     req.session.save()
                     return res.status(200).send(user)
                 }
@@ -59,7 +59,7 @@ module.exports = {
             return res.status(401).send('Usuário não logado')
 
         } else {    
-            console.log(sess.user)
+            
             return res.status(200).send(sess.user)
         }
 
@@ -76,7 +76,7 @@ module.exports = {
     async updateUser(req, res) {
 
         const id = sess.user._id
-        console.log(id)
+        
         if (req.file) {
             var { filename: image } = await req.file
         }
@@ -123,7 +123,7 @@ module.exports = {
                     }
                     if (fileName) {
                         foundUser.image = fileName
-                        console.log(fileName)
+                        
                     }
 
                     foundUser.save((err, updatedUser) => {
@@ -131,7 +131,7 @@ module.exports = {
                             console.log(err)
                             res.status(500).send()
                         } else {
-                            console.log(updatedUser)
+                            
                             res.status(200).send(updatedUser)
                         }
                     })
@@ -156,7 +156,7 @@ module.exports = {
                 console.log(err)
                 return res.status(500).send()
             }
-            console.log(savedUser)
+            
             return res.status(200).send(savedUser)
 
         })
